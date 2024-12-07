@@ -2,9 +2,22 @@
  * Created by Jesus Zuluaga (Mathematician and Developer)
  * @license Apache-2.0
  */
+
+/**
+ * Componentes
+ */
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import Navbar from './Navbar'
+
+/**
+ * Node modulos
+ */
+import {useState} from 'react';
 
 const Header = () => {
+    const [navOpen, setNavOpen] = useState(false);
+
     return (
         <header className="fixed top-0 left-0 w-full h-20 flex items-center z-40 bg-gradient-to-b from-zinc-900 to-zinc-900/0">
             
@@ -13,7 +26,7 @@ const Header = () => {
                 <h1>
                     <a href="/" className="logo">
                         <img 
-                        src="public/images/logo.svg"
+                        src="public/images/tata.png"
                         width={40}
                         height={40}
                         alt="Jesus Zuluaga" 
@@ -23,14 +36,15 @@ const Header = () => {
 
                 <div className="relative md:justify-self-center">
                     <button 
-                    className="menu-btn"
-                    onClick={null}>
-                       <MenuIcon  />
-                    </button> Navbar
+                    className="menu-btn md:hidden"
+                    onClick={() => setNavOpen((prev) => !prev)}>
+                       {navOpen ? <CloseIcon /> : <MenuIcon />}
+                    </button> 
+                    <Navbar navOpen={navOpen} />
                 </div>
                 <a 
                 href="#contact"
-                className=""
+                className="btn btn-secondary max-md:hidden md:justify-self-end"
                 >
                     Contact me
                 </a>
